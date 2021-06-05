@@ -20,13 +20,23 @@ titles = html.xpath('//div[contains(@class,"list-group")]//div[contains(@class,"
 urls = html.xpath('//div[contains(@class,"list-group")]//div[contains(@class,"list-group-item")]//div[contains(@class,"flex-fill")]/a[1]/@href')
 
 json_data = []
-for i in range(len(authors)):
-    data = {
+# for i in range(len(authors)):
+#     data = {
+#         'author': authors[i],
+#         'title': titles[i],
+#         'url': urls[i]
+#     }
+#     json_data.append(data)
+
+# 列表推导式
+json_data = [
+    {
         'author': authors[i],
         'title': titles[i],
         'url': urls[i]
-    }
-    json_data.append(data)
+    } for i in range(len(authors))]
+
+print(json_data)
 
 # 写入数据
 with open('./xxyd.json', 'w', encoding='utf-8') as fb:
